@@ -83,3 +83,77 @@ def D():
     else:
         print(f"{word[1:]}{word[0]}ay")
     
+
+# Problem E: Hacking to the Gate
+def E():
+    N, S, K = (int(i) for i in input().split())
+    D = [int(i) for i in input().split()]
+    # start = S % N
+    # # print(start)
+    # end = (start + K) % N
+
+    # print(D[end])
+
+    for jumps in range(K):
+        S = D[S-1]
+    
+    print(f"Location: {S}")
+
+
+# Problem F: Cake
+import math
+def F():
+    r = float(input())
+    C = 2 * math.pi * r
+    print("%.3f" % C)
+
+
+# Problem G: Maximino Triples
+def G():
+    N = int(input())
+
+    for i in range(N):
+        scores = [int(i) for i in input().split()]
+        print(f"Student {i + 1}: {max(scores)}")
+
+
+# Problem H: Range Median Query
+def H():
+    N = int(input())
+    reals = [float(i) for i in input().split()]
+    Q = int(input())
+    
+    for i in range(Q):
+        x, y = (int(i) for i in input().split())
+        sub = reals[x:y + 1]
+        sub.sort()
+        lensub = len(sub)
+
+        rmq = 0.0
+        if lensub % 2 == 0:
+            rmq = (sub[(lensub // 2) - 1] + sub[lensub // 2]) / 2
+        else:
+            rmq = sub[lensub // 2]
+
+        print("%.4f" % rmq)
+
+
+# Problem I: 2D Array Problem
+def I():
+    a, b = (int(i) for i in input().split())
+
+    print((a * b) % 10007)
+
+
+# Problem J: Drawn Onward
+def J():
+    N = int(input())
+    test = [int(i) for i in input().split()]
+
+    for i in range(N):
+        if test[i] != test[-i - 1]:
+            print("No")
+            return 0
+    
+    print("Yes")
+
