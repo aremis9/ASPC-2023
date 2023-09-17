@@ -3,7 +3,7 @@
 
 
 # Problem A: AM-GM Inequality
-from re import L
+from re import L, X
 
 
 def A():
@@ -157,3 +157,83 @@ def J():
     
     print("Yes")
 
+
+# Problem K: Migeee’s String Game
+def K():
+    s1 = input()
+    s2 = input()
+
+    M = s1.count('e')
+    H = s2.count('e')
+
+    print(M * H)
+
+
+# Problem L: Hop, Step, Jump!
+def L():
+    s = int(input())
+    
+    def f(n):
+        if n == 1:
+            return 1
+        elif n == 2:
+            return 2
+        elif n ==  3:
+            return 4
+        else:
+            return f(n-1) + f(n-2) + f(n-3)
+
+    print(f(s))
+
+
+# Problem M: Dungeon Building
+def M():
+    N = int(input())
+    room = []
+
+    for i in range(N):
+        r = [int(i) for i in input().split()]
+        room.append(r)
+    
+    size = N * 3
+    out = []
+    for row in range(size):
+        o = ["#" for i in range(size)]
+        out.append(o)
+
+        if (row + 1) % 3 == 0:
+            i = int(((row + 1) / 3) - 1)
+
+            for j in range(N):
+                pos = (3*j) + 1
+                if room[i][j] == 0:
+                    out[row-1][pos] = "."
+                    
+                    if i > 0 and room[i-1][j] == 0:
+                        out[row-2][pos] = "."
+                    
+                    if i < N-1 and room[i+1][j] == 0:
+                        out[row][pos] = "."
+
+                    if j < N-1 and room[i][j+1] == 0:
+                        out[row-1][pos+1] = "."
+                        out[row-1][pos+2] = "."
+
+    # print(out)
+    for o in out:
+        print("".join(o))
+    
+    
+M()
+
+"""
+0
+1
+2       (2 + 1) / 3 = 1
+
+3
+4
+5       (5 + 1) / 3 = 2
+
+
+"""
